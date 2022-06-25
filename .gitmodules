@@ -1,0 +1,3 @@
+[submodule "Parrot/vendor/spdlog"]
+	path = Parrot/vendor/spdlog
+	url = https://github.com/gabime/spdlog
