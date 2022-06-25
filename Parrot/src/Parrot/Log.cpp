@@ -15,10 +15,10 @@ namespace Parrot
 
 		s_CoreLogger = spdlog::stdout_color_mt("PARROT");
 		s_CoreLogger->set_level(spdlog::level::trace);
-		s_CoreLogger->info("Core logger named PARROT has been created.");
+		PT_CORE_TRACE("Core logger named PARROT has been created.");
 
 		s_ClientLogger = spdlog::stdout_color_mt("CLIENT");
 		s_ClientLogger->set_level(spdlog::level::trace);
-		s_ClientLogger->info("Client logger named CLIENT has been created.");
+		PT_TRACE("Client logger named CLIENT has been created.");
 	}
 }
