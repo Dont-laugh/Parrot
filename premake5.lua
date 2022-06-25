@@ -19,6 +19,9 @@ project "Parrot"
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+    pchheader "ptpch.h"
+    pchsource "Parrot/src/ptpch.cpp"
+
     files
     {
         "%{prj.name}/src/**.h",
@@ -29,7 +32,7 @@ project "Parrot"
     includedirs
     {
         "%{prj.name}/vendor/spdlog/include",
-        "%{prj.name}/src/%{prj.name}",
+        "%{prj.name}/src",
     }
 
     filter "system:Windows"

@@ -1,10 +1,11 @@
+#include "ptpch.h"
 #include "Log.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace Parrot
 {
-	std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
-	std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
+	PARROT_API std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
+	PARROT_API std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
 
 	static std::string PATTERN = "%^[%Y-%m-%d %H:%M:%S.%e] [%n] [%l]%$ %v";
 
