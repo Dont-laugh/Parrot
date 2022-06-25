@@ -9,3 +9,5 @@
 #else
 	#error PARROT Only Suppport Windows
 #endif // PARROT_PLATFORM_WINDOWS
+
+#define BIT(x) (1 << x)

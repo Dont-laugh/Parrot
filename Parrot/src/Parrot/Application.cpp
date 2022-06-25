@@ -1,17 +1,23 @@
 #include "Application.h"
+#include "Log.h"
+#include "Events/ApplicationEvent.h"
 
-Parrot::Application::Application()
+namespace Parrot
 {
-}
-
-Parrot::Application::~Application()
-{
-}
-
-void Parrot::Application::Run()
-{
-	while (true)
+	Application::Application()
 	{
+	}
 
+	Application::~Application()
+	{
+	}
+
+	void Application::Run()
+	{
+		WindowResizeEvent e(1280, 720);
+		PT_TRACE(e);
+
+		while (true) { }
 	}
 }
+

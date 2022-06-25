@@ -29,6 +29,7 @@ project "Parrot"
     includedirs
     {
         "%{prj.name}/vendor/spdlog/include",
+        "%{prj.name}/src/%{prj.name}",
     }
 
     filter "system:Windows"
