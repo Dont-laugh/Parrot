@@ -16,4 +16,7 @@
 
 #ifdef PARROT_PLATFORM_WINDOWS
 #include <Windows.h>
-#endif // PARROT_PLATFORM_WINDOWS
+#endif
+
+#include "Parrot/Core.h"
+#include "Parrot/Log.h"

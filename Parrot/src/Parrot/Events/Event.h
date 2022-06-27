@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ptpch.h"
-#include "Core.h"
+#include "Parrot/Core.h"
+#include <functional>
 
 namespace Parrot
 {

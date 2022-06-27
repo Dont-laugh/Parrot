@@ -6,10 +6,16 @@ workspace "Parrot"
     {
         "Debug",
         "Release",
-        "Distribute",
+        "Dist",
     }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+IncludeDir = {}
+IncludeDir["GLFW"] = "Parrot/vendor/GLFW/include"
+
+-- Other folder of premake5.lua
+include "Parrot/vendor/GLFW"
 
 project "Parrot"
     location "Parrot"
@@ -33,6 +39,13 @@ project "Parrot"
     {
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
+        "%{IncludeDir.GLFW}",
+    }
+
+    links
+    {
+        "GLFW",
+        "opengl32.lib",
     }
 
     filter "system:Windows"
@@ -53,14 +66,17 @@ project "Parrot"
 
     filter "configurations:Debug"
         defines "PT_DEBUG"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "PT_RELEASE"
+        buildoptions "/MD"
         optimize "On"
 
-    filter "configurations:Distribute"
+    filter "configurations:Dist"
         defines "PT_DIST"
+        buildoptions "/MD"
         optimize "On"
 
 project "Sandbox"
@@ -101,12 +117,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "PT_DEBUG"
+        buildoptions "/MTd"
         symbols "On"
 
     filter "configurations:Release"
         defines "PT_RELEASE"
+        buildoptions "/MT"
         optimize "On"
 
-    filter "configurations:Distribute"
+    filter "configurations:Dist"
         defines "PT_DIST"
+        buildoptions "/MT"
         optimize "On"
