@@ -14,10 +14,12 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["GLAD"] = "Parrot/vendor/GLAD/include"
 IncludeDir["GLFW"] = "Parrot/vendor/GLFW/include"
+IncludeDir["ImGui"] = "Parrot/vendor/imgui"
 
 -- Other folder of premake5.lua
 include "Parrot/vendor/GLAD"
 include "Parrot/vendor/GLFW"
+include "Parrot/vendor/imgui"
 
 project "Parrot"
     location "Parrot"
@@ -41,6 +43,7 @@ project "Parrot"
     {
         "%{IncludeDir.GLAD}",
         "%{IncludeDir.GLFW}",
+        "%{IncludeDir.ImGui}",
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
     }
@@ -49,6 +52,7 @@ project "Parrot"
     {
         "GLAD",
         "GLFW",
+        "ImGui",
         "opengl32.lib",
     }
 
