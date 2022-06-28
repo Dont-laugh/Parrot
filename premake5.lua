@@ -12,9 +12,11 @@ workspace "Parrot"
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
+IncludeDir["GLAD"] = "Parrot/vendor/GLAD/include"
 IncludeDir["GLFW"] = "Parrot/vendor/GLFW/include"
 
 -- Other folder of premake5.lua
+include "Parrot/vendor/GLAD"
 include "Parrot/vendor/GLFW"
 
 project "Parrot"
@@ -37,6 +39,7 @@ project "Parrot"
 
     includedirs
     {
+        "%{IncludeDir.GLAD}",
         "%{IncludeDir.GLFW}",
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
@@ -44,6 +47,7 @@ project "Parrot"
 
     links
     {
+        "GLAD",
         "GLFW",
         "opengl32.lib",
     }
@@ -57,6 +61,7 @@ project "Parrot"
         {
             "PARROT_PLATFORM_WINDOWS",
             "PARROT_BUILD_DLL",
+            "GLFW_INCLUDE_NONE",
         }
 
         postbuildcommands
@@ -68,6 +73,11 @@ project "Parrot"
         defines "PT_DEBUG"
         buildoptions "/MDd"
         symbols "On"
+
+        defines
+        {
+            "PARROT_ENABLE_ASSERTS",
+        }
 
     filter "configurations:Release"
         defines "PT_RELEASE"

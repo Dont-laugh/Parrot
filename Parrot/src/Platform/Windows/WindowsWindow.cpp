@@ -1,5 +1,7 @@
 #include "ptpch.h"
 #include "WindowsWindow.h"
+#include "glad/glad.h"
+#include "glfw/glfw3.h"
 #include "Parrot/Events/ApplicationEvent.h"
 #include "Parrot/Events/KeyEvent.h"
 #include "Parrot/Events/MouseEvent.h"
@@ -63,6 +65,10 @@ namespace Parrot
 
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(m_Window);
+
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		PT_CORE_ASSERT(status, "Failed to initialize GLAD!");
+
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 
 		SetVSync(true);

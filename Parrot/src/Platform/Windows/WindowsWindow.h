@@ -2,7 +2,8 @@
 
 #include "Parrot/Window.h"
 #include "Parrot/Core.h"
-#include "GLFW/glfw3.h"
+
+struct GLFWwindow;
 
 namespace Parrot
 {
