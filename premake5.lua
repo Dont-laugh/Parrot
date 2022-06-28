@@ -37,9 +37,9 @@ project "Parrot"
 
     includedirs
     {
+        "%{IncludeDir.GLFW}",
         "%{prj.name}/vendor/spdlog/include",
         "%{prj.name}/src",
-        "%{IncludeDir.GLFW}",
     }
 
     links
@@ -117,15 +117,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "PT_DEBUG"
-        buildoptions "/MTd"
+        buildoptions "/MDd"
         symbols "On"
 
     filter "configurations:Release"
         defines "PT_RELEASE"
-        buildoptions "/MT"
+        buildoptions "/MD"
         optimize "On"
 
     filter "configurations:Dist"
         defines "PT_DIST"
-        buildoptions "/MT"
+        buildoptions "/MD"
         optimize "On"
