@@ -15,6 +15,7 @@ IncludeDir = {}
 IncludeDir["GLAD"] = "Parrot/vendor/GLAD/include"
 IncludeDir["GLFW"] = "Parrot/vendor/GLFW/include"
 IncludeDir["ImGui"] = "Parrot/vendor/imgui"
+IncludeDir["spdlog"] = "Parrot/vendor/spdlog/include"
 
 -- Other folder of premake5.lua
 include "Parrot/vendor/GLAD"
@@ -44,7 +45,7 @@ project "Parrot"
         "%{IncludeDir.GLAD}",
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.ImGui}",
-        "%{prj.name}/vendor/spdlog/include",
+        "%{IncludeDir.spdlog}",
         "%{prj.name}/src",
     }
 

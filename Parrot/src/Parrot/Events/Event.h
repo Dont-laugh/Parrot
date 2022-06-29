@@ -61,6 +61,7 @@ namespace Parrot
 
 	class PARROT_API EventDispatcher
 	{
+		/* Event处理回调。返回值若为true，表示Event已处理，不会再传播 */
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 
