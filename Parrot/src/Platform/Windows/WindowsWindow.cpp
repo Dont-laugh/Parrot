@@ -49,12 +49,6 @@ namespace Parrot
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
-		m_Data.Title = props.Title;
-		m_Data.Width = props.Width;
-		m_Data.Height = props.Height;
-
-		PT_CORE_LOG("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
-
 		if (!s_GLFWInitialized)
 		{
 			int success = glfwInit();
@@ -63,7 +57,17 @@ namespace Parrot
 			s_GLFWInitialized = true;
 		}
 
-		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, props.Title.c_str(), nullptr, nullptr);
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+
+		m_Data.Title = props.Title;
+		m_Data.Width = mode->width * 0.75;
+		m_Data.Height = mode->height * 0.75;
+
+		PT_CORE_LOG("Creating window {0} ({1}, {2})", m_Data.Title, m_Data.Width, m_Data.Height);
+
+		m_Window = glfwCreateWindow((int)m_Data.Width, (int)m_Data.Height, props.Title.c_str(), nullptr, nullptr);
+		PT_CORE_ASSERT(m_Window, "Failed to create window!");
 		glfwMakeContextCurrent(m_Window);
 
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);

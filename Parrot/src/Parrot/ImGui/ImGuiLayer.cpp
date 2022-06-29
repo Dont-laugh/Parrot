@@ -27,7 +27,11 @@ namespace Parrot
 		ImGuiIO& io = ImGui::GetIO();
 		io.BackendFlags |= ImGuiBackendFlags_HasMouseCursors;
 		io.BackendFlags |= ImGuiBackendFlags_HasSetMousePos;
-		io.FontGlobalScale = 1.6f;
+
+		// 根据分辨率调整缩放比例（1080p时等于1）
+		GLFWmonitor* monitor = glfwGetPrimaryMonitor();
+		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+		io.FontGlobalScale = mode->height / 1080.f;
 
 		// 临时代码，之后移到KeyCode中处理
 		io.KeyMap[ImGuiKey_Tab] = GLFW_KEY_TAB;
