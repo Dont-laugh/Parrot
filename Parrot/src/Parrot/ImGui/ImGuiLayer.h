@@ -26,7 +26,7 @@ namespace Parrot
 		bool OnMouseScrolledEvent(MouseScrolledEvent& evt);
 		bool OnKeyPressedEvent(KeyPressedEvent& evt);
 		bool OnKeyReleasedEvent(KeyReleasedEvent& evt);
-		//bool OnKeyTypedEvent(KeyTypedEvent& evt);
+		bool OnKeyTypedEvent(KeyTypedEvent& evt);
 		bool OnWindowResizeEvent(WindowResizeEvent& evt);
 
 	private:

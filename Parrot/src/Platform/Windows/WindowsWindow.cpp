@@ -73,7 +73,8 @@ namespace Parrot
 
 		SetVSync(true);
 
-		// Set GLFW callbacks
+
+		#pragma region "Set Callback"
 
 		glfwSetWindowSizeCallback(m_Window, [](GLFWwindow* window, int width, int height)
 		{
@@ -81,15 +82,13 @@ namespace Parrot
 			data.Width = width;
 			data.Height = height;
 
-			WindowResizeEvent event(width, height);
-			data.Callback(event);
+			data.Callback(WindowResizeEvent(width, height));
 		});
 
 		glfwSetWindowCloseCallback(m_Window, [](GLFWwindow* window)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			WindowCloseEvent event;
-			data.Callback(event);
+			data.Callback(WindowCloseEvent());
 		});
 
 		glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -99,24 +98,21 @@ namespace Parrot
 			switch (action)
 			{
 			case GLFW_PRESS:
-				{
-					KeyPressedEvent event(key, 0);
-					data.Callback(event);
-					break;
-				}
+				data.Callback(KeyPressedEvent(key, 0));
+				break;
 			case GLFW_RELEASE:
-				{
-					KeyReleasedEvent event(key);
-					data.Callback(event);
-					break;
-				}
+				data.Callback(KeyReleasedEvent(key));
+				break;
 			case GLFW_REPEAT:
-				{
-					KeyPressedEvent event(key, 1);
-					data.Callback(event);
-					break;
-				}
+				data.Callback(KeyPressedEvent(key, 1));
+				break;
 			}
+		});
+
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int codepoint)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			data.Callback(KeyTypedEvent(codepoint));
 		});
 
 		glfwSetMouseButtonCallback(m_Window, [](GLFWwindow* window, int button, int action, int mods)
@@ -126,33 +122,27 @@ namespace Parrot
 			switch (action)
 			{
 			case GLFW_PRESS:
-				{
-					MouseButtonPressedEvent event(button);
-					data.Callback(event);
-					break;
-				}
+				data.Callback(MouseButtonPressedEvent(button));
+				break;
 			case GLFW_RELEASE:
-				{
-					MouseButtonReleasedEvent event(button);
-					data.Callback(event);
-					break;
-				}
+				data.Callback(MouseButtonReleasedEvent(button));
+				break;
 			}
 		});
 
 		glfwSetScrollCallback(m_Window, [](GLFWwindow* window, double xoffset, double yoffset)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			MouseScrolledEvent event((float)xoffset, (float)yoffset);
-			data.Callback(event);
+			data.Callback(MouseScrolledEvent((float)xoffset, (float)yoffset));
 		});
 
 		glfwSetCursorPosCallback(m_Window, [](GLFWwindow* window, double xpos, double ypos)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
-			MouseMovedEvent event((float)xpos, (float)ypos);
-			data.Callback(event);
+			data.Callback(MouseMovedEvent((float)xpos, (float)ypos));
 		});
+
+		#pragma endregion
 	}
 
 	void WindowsWindow::Shutdown()

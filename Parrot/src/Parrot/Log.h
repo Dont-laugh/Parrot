@@ -3,6 +3,8 @@
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 
+#pragma warning (disable: 4251)
+
 namespace Parrot
 {
 	class PARROT_API Log

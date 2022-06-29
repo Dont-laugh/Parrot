@@ -64,6 +64,7 @@ project "Parrot"
 
         defines
         {
+            "_CRT_SECURE_NO_WARNINGS",
             "PARROT_PLATFORM_WINDOWS",
             "PARROT_BUILD_DLL",
             "GLFW_INCLUDE_NONE",
