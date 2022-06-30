@@ -61,8 +61,8 @@ namespace Parrot
 		const GLFWvidmode* mode = glfwGetVideoMode(monitor);
 
 		m_Data.Title = props.Title;
-		m_Data.Width = mode->width * 0.75;
-		m_Data.Height = mode->height * 0.75;
+		m_Data.Width = static_cast<unsigned int>(mode->width * 0.75f);
+		m_Data.Height = static_cast<unsigned int>(mode->height * 0.75f);
 
 		PT_CORE_LOG("Creating window {0} ({1}, {2})", m_Data.Title, m_Data.Width, m_Data.Height);
 

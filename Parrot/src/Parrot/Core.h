@@ -10,6 +10,10 @@
 	#error PARROT Only Suppport Windows
 #endif // PARROT_PLATFORM_WINDOWS
 
+#ifdef PT_DEBUG
+#define PARROT_ENABLE_ASSERTS
+#endif // PT_DEBUG
+
 #ifdef PARROT_ENABLE_ASSERTS
 	#define PT_ASSERT(x, ...)                               \
 		if (!(x))                                           \

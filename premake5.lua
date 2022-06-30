@@ -59,7 +59,7 @@ project "Parrot"
 
     filter "system:Windows"
         cppdialect "C++17"
-        staticruntime "on"
+        staticruntime "off"
         systemversion "latest"
 
         defines
@@ -77,22 +77,17 @@ project "Parrot"
 
     filter "configurations:Debug"
         defines "PT_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
-
-        defines
-        {
-            "PARROT_ENABLE_ASSERTS",
-        }
 
     filter "configurations:Release"
         defines "PT_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "PT_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
 project "Sandbox"
@@ -123,7 +118,7 @@ project "Sandbox"
 
     filter "system:Windows"
         cppdialect "C++17"
-        staticruntime "on"
+        staticruntime "off"
         systemversion "latest"
 
         defines
@@ -133,15 +128,15 @@ project "Sandbox"
 
     filter "configurations:Debug"
         defines "PT_DEBUG"
-        buildoptions "/MDd"
+        runtime "Debug"
         symbols "On"
 
     filter "configurations:Release"
         defines "PT_RELEASE"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
 
     filter "configurations:Dist"
         defines "PT_DIST"
-        buildoptions "/MD"
+        runtime "Release"
         optimize "On"
