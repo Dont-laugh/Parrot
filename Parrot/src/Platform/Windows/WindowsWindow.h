@@ -18,14 +18,16 @@ namespace Parrot
 		virtual inline unsigned int GetWidth() const override { return m_Data.Width; }
 		virtual inline unsigned int GetHeight() const override { return m_Data.Height; }
 
-		virtual void SetEventCallback(const EventCallback& callback) override { m_Data.Callback = callback; }
+		virtual inline void SetEventCallback(const EventCallback& callback) override { m_Data.Callback = callback; }
 		virtual void SetVSync(bool enabled) override;
 		virtual bool IsVSync() const override;
+
+		virtual inline void* GetNativeWindow() const { return m_Window; }
 
 	private:
 		void Init(const WindowProps& props);
 		void Shutdown();
-		
+
 	private:
 		struct WindowData
 		{

@@ -1,5 +1,6 @@
 #include "ptpch.h"
 #include "Application.h"
+#include "Input.h"
 #include "Events/ApplicationEvent.h"
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
@@ -32,6 +33,9 @@ namespace Parrot
 			{
 				layer->OnUpdate();
 			}
+
+			auto [x, y] = Input::GetMousePosition();
+			PT_CORE_TRACE("mousePos: ({0}, {1})", x, y);
 
 			m_Window->OnUpdate();
 		}
