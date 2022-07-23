@@ -18,9 +18,12 @@ IncludeDir["ImGui"] = "Parrot/vendor/imgui"
 IncludeDir["spdlog"] = "Parrot/vendor/spdlog/include"
 
 -- Other folder of premake5.lua
-include "Parrot/vendor/GLAD"
-include "Parrot/vendor/GLFW"
-include "Parrot/vendor/imgui"
+group "Dependencies"
+    include "Parrot/vendor/GLAD"
+    include "Parrot/vendor/GLFW"
+    include "Parrot/vendor/imgui"
+
+group ""
 
 project "Parrot"
     location "Parrot"
@@ -72,6 +75,7 @@ project "Parrot"
 
         postbuildcommands
         {
+            "IF NOT EXIST ../bin/" .. outputdir .. "/Sandbox mkdir ../bin/" .. outputdir .. "/Sandbox",
             "{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox",
         }
 
