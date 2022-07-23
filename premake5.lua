@@ -16,6 +16,7 @@ IncludeDir["GLAD"] = "Parrot/vendor/GLAD/include"
 IncludeDir["GLFW"] = "Parrot/vendor/GLFW/include"
 IncludeDir["ImGui"] = "Parrot/vendor/imgui"
 IncludeDir["spdlog"] = "Parrot/vendor/spdlog/include"
+IncludeDir["glm"] = "Parrot/vendor/glm"
 
 -- Other folder of premake5.lua
 group "Dependencies"
@@ -49,6 +50,7 @@ project "Parrot"
         "%{IncludeDir.GLFW}",
         "%{IncludeDir.ImGui}",
         "%{IncludeDir.spdlog}",
+        "%{IncludeDir.glm}",
         "%{prj.name}/src",
     }
 
@@ -111,7 +113,8 @@ project "Sandbox"
 
     includedirs
     {
-        "Parrot/vendor/spdlog/include",
+        "%{IncludeDir.spdlog}",
+        "%{IncludeDir.glm}",
         "Parrot/src",
     }
 
